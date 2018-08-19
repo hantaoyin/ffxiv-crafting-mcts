@@ -15,7 +15,7 @@ https://ffxiv.consolegameswiki.com/wiki/Crafting.
 
 This program depends only on the standard C++ library.
 
-Gameplay Performance
+* Gameplay Performance
 
 The program achieves quite good gameplay performance based on my knowledge of the crafting minigame.
 However, a few factors make it hard to accurately evaluate the exact performance: the crafting
@@ -41,7 +41,7 @@ this program deviates from the up-to-date crafting game in FFXIV in some way as 
 new actions / recipes may be introduced).  But the basic gameplay concept probably will not change
 much.
 
-Usage
+* Usage
 
 You need a C++ compiler that supports C++ 14.  I tested with gcc 8.2.0 and clang 6.0.1.  You don't
 need any other software library.
@@ -49,4 +49,5 @@ need any other software library.
 Example,
 
 $ make
-$ ./ndebug | tee log
+
+$ ./ffxiv-crafting-mcts | tee log
