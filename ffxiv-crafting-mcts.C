@@ -892,12 +892,12 @@ public:
   ReLU(Edge &x, Edge &y):Node(x, y) {
     ASSERT(x.size() == y.size()) << x.size() << " " << y.size();
   }
-  void forward(void) final {
+  void forward(void) override final {
     for (size_t i = 0; i < x.size(); ++i) {
       y(i) = x(i) > 0 ? x(i) : a * x(i);
     }
   }
-  void backward_propagate(double) final {
+  void backward_propagate(double) override final {
     for (size_t i = 0; i < x.size(); ++i) {
       x.D(i) = y(i) > 0 ? y.D(i) : a * y.D(i);
     }
@@ -917,7 +917,7 @@ public:
       bi = 0.001 * (random_real() - 0.5);
     }
   }
-  void forward(void) final {
+  void forward(void) override final {
     for (size_t i = 0; i < y.size(); ++i) {
       y(i) = b[i];
       for (size_t j = 0; j < x.size(); ++j) {
@@ -925,7 +925,7 @@ public:
       }
     }
   }
-  void backward_propagate(double step_size) final {
+  void backward_propagate(double step_size) override final {
     for (size_t j = 0; j < x.size(); ++j) {
       x.D(j) = 0.0;
     }
@@ -952,7 +952,7 @@ public:
     ASSERT(x.size() == y.size()) << x.size() << " " << y.size();
   }
 
-  void forward(void) final {
+  void forward(void) override final {
     // SoftMax
     double xmax = x(0);
     for (size_t i = 1; i < size; ++i) {
@@ -976,7 +976,7 @@ public:
     y(size) = 1. / (1. + std::exp(bias - x(size)));
   }
 
-  void backward_propagate(double) final {
+  void backward_propagate(double) override final {
     // SoftMax
     double sum = 0.;
     for (size_t i = 0; i < size; ++i) {
