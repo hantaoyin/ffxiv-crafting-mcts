@@ -27,10 +27,10 @@ struct NewLine {
 // CHECK(a % 2 == 0) << a;
 //
 // Obviously, a more useful implementation will also print a stack trace.
-#define CHECK(condition) __builtin_expect((condition), 1) ? \
-  std::cerr :                                               \
-  (check_impl::Terminate(), std::cerr)                      \
-  << "Condition `" #condition "` failed in "                \
+#define CHECK(condition) __builtin_expect(!!(condition), 1) ? \
+  std::cerr :                                                 \
+  (check_impl::Terminate(), std::cerr)                        \
+  << "Condition `" #condition "` failed in "                  \
   << __FILE__ << " line " << __LINE__ << ", msg = "
 
 // This is meant to be a check only in place in debug mode.  Unlike CHECK(condition),
